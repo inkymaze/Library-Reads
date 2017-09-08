@@ -1,6 +1,7 @@
 import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import { Link } from 'react-router-dom';
+import escapeRegExp from 'escape-string-regexp';
 
 class SearchBar extends React.Component {
 
@@ -9,15 +10,27 @@ class SearchBar extends React.Component {
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then((contacts) => {
-      this.setState({ contacts })
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
     })
   }
+
+
   render() {
+    const { books, query } = this.state;
+
+    let showingBooks;
+    if (query) {
+      const match = new RegExp(escapeRegExp(query), 'i')
+      showingBooks = books.filter((book) => match.test(book.title))
+    } else {
+      showingBooks = books;
+    }
+  
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link to='/' className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</Link>
+          <Link to='/' className="close-search">Close</Link>
           <div className="search-books-input-wrapper">
             {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -32,7 +45,9 @@ class SearchBar extends React.Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+
+          </ol>
         </div>
       </div>
     );
