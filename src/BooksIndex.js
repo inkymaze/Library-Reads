@@ -12,7 +12,7 @@ class BooksIndex extends React.Component {
     let currentlyReading = books.filter(book => (book.shelf === 'currentlyReading'));
     let wantToRead = books.filter(book => (book.shelf === 'wantToRead'));
     let read = books.filter(book => (book.shelf === 'read'));
-
+    console.log(books);
     return (
       <div className="app">
           <div className="list-books">
@@ -39,7 +39,7 @@ class BooksIndex extends React.Component {
                     <ol className="books-grid">
                         {wantToRead.map((book) => (
                           <li key={book.id}>
-                            <BookDetail book={book} onSelectionChange={(e) => {this.props.onShelfChange(e)}}/>
+                            <BookDetail book={book} onSelectionChange={this.props.onShelfChange}/>
                           </li>
                         ))}
                     </ol>
@@ -51,7 +51,7 @@ class BooksIndex extends React.Component {
                     <ol className="books-grid">
                       {read.map((book) => (
                         <li key={book.id}>
-                          <BookDetail book={book} onSelectionChange={(e) => {this.props.onShelfChange(e)}}/>
+                          <BookDetail book={book} onSelectionChange={this.props.onShelfChange}/>
                         </li>
                       ))}
                     </ol>
