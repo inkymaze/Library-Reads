@@ -6,8 +6,8 @@ class BookDetail extends React.Component {
 
   render () {
     let authors = this.props.book.authors || [];
-    let shelf = this.props.book.shelf || [];
-    // console.log(this.props);
+    let shelf = this.props.book.shelf;
+
     return (
       <div className="book">
         <div className="book-top">

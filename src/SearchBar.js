@@ -18,8 +18,7 @@ class SearchBar extends React.Component {
   render() {
 
     let books = this.state.books || [];
-
-    if (!books) { return <div>Loading...</div> }
+    console.log(this.state);
 
     return (
       <div className="search-books">
@@ -34,11 +33,11 @@ class SearchBar extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-          {books.map((book) => (
-            <li key={book.id}>
-              <BookDetail book={book} onSelectionChange={this.props.onSelectionChange}/>
-            </li>
-          ))}
+            {books.map((book) => (
+              <li key={book.id}>
+                <BookDetail book={book} onSelectionChange={this.props.onSelectionChange}/>
+              </li>
+            ))}
           </ol>
         </div>
       </div>
