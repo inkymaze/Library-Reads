@@ -17,11 +17,12 @@ class App extends React.Component {
   })
 }
 
-handleSelectionChange = (book) => {
-  // console.log(book);
-  let currentShelf = book.shelf;
+
+handleSelectionChange = (book, shelf) => {
+  console.log("Book", book, shelf);
+  
   console.log(book.id);
-  // this.setState({books[{book.id}]: {shelf: [currentShelf]}});
+  // this.setState({books[book.id]: { shelf }});
 }
 
   render () {
@@ -29,7 +30,7 @@ handleSelectionChange = (book) => {
     return (
       <div className='app'>
         <Route exact path='/' render={() => (
-            <BooksIndex books={this.state.books} onShelfChange={(e) => {this.handleSelectionChange(e)}}/>
+            <BooksIndex books={this.state.books} onShelfChange={this.handleSelectionChange}/>
           )} />
         <Route path='/search' render={() => (
             <SearchBar />
