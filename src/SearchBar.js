@@ -2,11 +2,13 @@ import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import { Link } from 'react-router-dom';
 import escapeRegExp from 'escape-string-regexp';
+import BookDetail from './BookDetail';
 
 class SearchBar extends React.Component {
 
   state = {
-    query: ''
+    query: '',
+    books: []
   }
 
   componentDidMount() {
@@ -26,7 +28,8 @@ class SearchBar extends React.Component {
     } else {
       showingBooks = books;
     }
-  
+    console.log('ShowingBOoks', showingBooks);
+    console.log(this.props);
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -46,7 +49,11 @@ class SearchBar extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-
+          {showingBooks.map((book) => (
+            <li key={book.id}>
+              <BookDetail book={book} onSelectionChange={this.props.onSelectionChange}/>
+            </li>
+          ))}
           </ol>
         </div>
       </div>
