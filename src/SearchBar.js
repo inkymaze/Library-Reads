@@ -7,29 +7,34 @@ import BookDetail from './BookDetail';
 class SearchBar extends React.Component {
 
   state = {
-    query: '',
+
     books: []
   }
 
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({ books })
-    })
+  // componentDidMount() {
+  //   BooksAPI.getAll().then((books) => {
+  //     this.setState({ books })
+  //   })
+  // }
+  searchQuery(query) {
+    BooksAPI.search(query,20).then((books) => {
+        this.setState({ books })
+      })
   }
-
 
   render() {
     const { books, query } = this.state;
-
-    let showingBooks;
-    if (query) {
-      const match = new RegExp(escapeRegExp(query), 'i')
-      showingBooks = books.filter((book) => match.test(book.title))
-    } else {
-      showingBooks = books;
-    }
-    console.log('ShowingBOoks', showingBooks);
-    console.log(this.props);
+    console.log(this.state);
+    // let showingBooks;
+    // if (query) {
+    //   const match = new RegExp(escapeRegExp(query), 'i')
+    //   showingBooks = books.filter((book) => match.test(book.title))
+    // } else {
+    //   showingBooks = books;
+    // }
+    // console.log();
+    // console.log('ShowingBOoks', showingBooks);
+    // console.log(this.props);
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -43,13 +48,15 @@ class SearchBar extends React.Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" placeholder="Search by title or author"/>
+            <input type="text"
+                   placeholder="Search by title or author"
+                   />
 
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-          {showingBooks.map((book) => (
+          {books.map((book) => (
             <li key={book.id}>
               <BookDetail book={book} onSelectionChange={this.props.onSelectionChange}/>
             </li>
