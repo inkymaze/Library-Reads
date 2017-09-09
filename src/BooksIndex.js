@@ -27,7 +27,7 @@ class BooksIndex extends React.Component {
                     <ol className="books-grid">
                       {currentlyReading.map((book) => (
                         <li key={book.id}>
-                          <BookDetail book={book} onSelectionChange={({book}) => {this.props.onShelfChange({book})}}/>
+                          <BookDetail book={book} onSelectionChange={(book) => {this.props.onShelfChange(book)}}/>
                         </li>
                       ))}
                     </ol>

@@ -20,7 +20,8 @@ class App extends React.Component {
 handleSelectionChange = (book) => {
   // console.log(book);
   let currentShelf = book.shelf;
-  this.setState({books[book.id]: {shelf: [currentShelf]}});
+  console.log(book.id);
+  // this.setState({books[{book.id}]: {shelf: [currentShelf]}});
 }
 
   render () {
