@@ -50,7 +50,7 @@ class SearchBar extends React.Component {
             */}
             <input type="text"
                    placeholder="Search by title or author"
-                   />
+                   onChange={(query) => {this.searchQuery(query)}}/>
 
           </div>
         </div>
