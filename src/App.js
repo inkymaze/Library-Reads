@@ -24,15 +24,15 @@ handleSelectionChange = (book, shelf) => {
   let books = this.state.books.filter(books => books.id !== book.id)
   books.push(book)
   this.setState({ books })
-  // this.setState({ [book.shelf] : shelf });
 }
 
   render () {
-    // console.log(this.state.books[0]);
     return (
       <div className='app'>
         <Route exact path='/' render={() => (
-            <BooksIndex books={this.state.books} onShelfChange={this.handleSelectionChange}/>
+            <BooksIndex
+              books={this.state.books}
+              onShelfChange={this.handleSelectionChange}/>
           )} />
         <Route path='/search' render={() => (
             <SearchBar onSelectionChange={this.handleSelectionChange}/>

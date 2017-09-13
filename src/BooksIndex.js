@@ -3,16 +3,12 @@ import { Link } from 'react-router-dom';
 import BookDetail from './BookDetail';
 
 class BooksIndex extends React.Component {
-
-
-
   render() {
-
     let books = this.props.books || [];
     let currentlyReading = books.filter(book => (book.shelf === 'currentlyReading'));
     let wantToRead = books.filter(book => (book.shelf === 'wantToRead'));
     let read = books.filter(book => (book.shelf === 'read'));
-    console.log(books);
+
     return (
       <div className="app">
           <div className="list-books">
