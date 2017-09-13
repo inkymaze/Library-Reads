@@ -6,19 +6,22 @@ import BookDetail from './BookDetail';
 class SearchBar extends React.Component {
 
   state = {
-    books: []
+    books: [],
+    error: ""
   }
 
   searchQuery(query) {
     BooksAPI.search(query,20).then((books) => {
         this.setState({ books })
+      }).catch((error) => {
+        console.log(error);
       })
   }
 
   render() {
 
     let books = this.state.books || [];
-    console.log(this.state);
+    // console.log(this.state.books);
 
     return (
       <div className="search-books">
@@ -31,6 +34,7 @@ class SearchBar extends React.Component {
               onChange={() => {this.searchQuery(this.textInput.value)}}/>
           </div>
         </div>
+        <div>{this.state.error}</div>
         <div className="search-books-results">
           <ol className="books-grid">
             {books.map((book) => (
