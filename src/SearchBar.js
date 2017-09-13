@@ -2,6 +2,7 @@ import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import { Link } from 'react-router-dom';
 import BookDetail from './BookDetail';
+import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
 
@@ -19,9 +20,7 @@ class SearchBar extends React.Component {
   }
 
   render() {
-
     let books = this.state.books || [];
-    // console.log(this.state.books);
 
     return (
       <div className="search-books">
@@ -34,7 +33,7 @@ class SearchBar extends React.Component {
               onChange={() => {this.searchQuery(this.textInput.value)}}/>
           </div>
         </div>
-        <div>{this.state.error}</div>
+        
         <div className="search-books-results">
           <ol className="books-grid">
             {books.map((book) => (
@@ -48,6 +47,10 @@ class SearchBar extends React.Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  onSelectionChange: PropTypes.func.isRequired
+};
 
 
 export default SearchBar;

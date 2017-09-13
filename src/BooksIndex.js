@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BookDetail from './BookDetail';
+import PropTypes from 'prop-types';
 
 class BooksIndex extends React.Component {
   render() {
@@ -64,5 +65,10 @@ class BooksIndex extends React.Component {
     );
   }
 }
+
+BooksIndex.propTypes = {
+  books: PropTypes.array,
+};
+
 
 export default BooksIndex;

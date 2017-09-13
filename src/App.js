@@ -19,11 +19,13 @@ class App extends React.Component {
 
 
 handleSelectionChange = (book, shelf) => {
-  BooksAPI.update(book,shelf)
-  book.shelf = shelf
-  let books = this.state.books.filter(books => books.id !== book.id)
-  books.push(book)
-  this.setState({ books })
+  if (book.shelf !== shelf) {
+    BooksAPI.update(book,shelf)
+    book.shelf = shelf
+    let books = this.state.books.filter(books => books.id !== book.id)
+    books.push(book)
+    this.setState({ books })
+  }
 }
 
   render () {
