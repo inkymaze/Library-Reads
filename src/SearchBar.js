@@ -5,26 +5,21 @@ import BookDetail from './BookDetail';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
-
   state = {
-    books: []
+    books: [],
   }
 
   searchQuery(query) {
     BooksAPI.search(query,20).then((books) => {
         this.setState({ books })
       }).catch((error) => {
-        console.log(error);
+        // the catch prevents a bad search from error but serves no other purpose
       })
   }
 
   render() {
     let { books } = this.state;
-
     books = books.map(x => Object.assign(x, this.props.books.find(y => y.title === x.title)));
-
-    console.log('State',this.state.books);
-    console.log('Props',this.props.books);
 
     return (
       <div className="search-books">
@@ -39,6 +34,7 @@ class SearchBar extends React.Component {
         </div>
 
         <div className="search-books-results">
+          <h4>{this.state.error}</h4>
           <ol className="books-grid">
             {books.map((book) => (
               <li key={book.id}>
