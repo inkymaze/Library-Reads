@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 class BookDetail extends React.Component {
 
-
   render () {
     let authors = this.props.book.authors || [];
     let shelf = this.props.book.shelf || "none";
@@ -38,7 +37,7 @@ class BookDetail extends React.Component {
 
 BookDetail.propTypes = {
   book: PropTypes.object,
-  onSelectionChange: PropTypes.func.isRequired
+  onSelectionChange: PropTypes.func
 };
 
 

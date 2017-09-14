@@ -67,7 +67,7 @@ class BooksIndex extends React.Component {
 }
 
 BooksIndex.propTypes = {
-  books: PropTypes.array,
+  books: PropTypes.array
 };
 
 

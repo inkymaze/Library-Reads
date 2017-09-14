@@ -7,8 +7,7 @@ import PropTypes from 'prop-types';
 class SearchBar extends React.Component {
 
   state = {
-    books: [],
-    error: ""
+    books: []
   }
 
   searchQuery(query) {
@@ -20,7 +19,12 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    let books = this.state.books || [];
+    let { books } = this.state;
+
+    books = books.map(x => Object.assign(x, this.props.books.find(y => y.title === x.title)));
+
+    console.log('State',this.state.books);
+    console.log('Props',this.props.books);
 
     return (
       <div className="search-books">
@@ -33,7 +37,7 @@ class SearchBar extends React.Component {
               onChange={() => {this.searchQuery(this.textInput.value)}}/>
           </div>
         </div>
-        
+
         <div className="search-books-results">
           <ol className="books-grid">
             {books.map((book) => (
@@ -49,7 +53,8 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-  onSelectionChange: PropTypes.func.isRequired
+  books: PropTypes.array,
+  onSelectionChange: PropTypes.func
 };
 
 

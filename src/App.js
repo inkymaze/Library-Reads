@@ -37,7 +37,7 @@ handleSelectionChange = (book, shelf) => {
               onShelfChange={this.handleSelectionChange}/>
           )} />
         <Route path='/search' render={() => (
-            <SearchBar onSelectionChange={this.handleSelectionChange}/>
+            <SearchBar books={this.state.books} onSelectionChange={this.handleSelectionChange}/>
           )}/>
       </div>
     );
